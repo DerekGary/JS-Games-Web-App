@@ -1,6 +1,6 @@
 # CS3110 -- Group 2 Project: JS-based Video Games Web Application
 
-[![View Demo](https://img.shields.io/badge/View-Demo-blue?style=for-the-badge&logo=github)]()
+[![View Demo](https://img.shields.io/badge/View-Demo-blue?style=for-the-badge&logo=github)](https://derekgary.github.io/JS-Games-Web-App/)
 
 ## Group Member Names
 - Nicholas Bennings
@@ -22,7 +22,7 @@ This project aims to develop a web application hosting several JavaScript-based 
 - **`fonts/`**: Holds custom fonts used within the application, allowing for a unique typography that enhances the user interface and experience.
 
 - **`games/`**: This directory is organized by game, with each game having its own folder for better modularity and maintenance.
-  - **`Minesweeper/`**: Contains all files related to the Minesweeper game.
+  - **`Minesweeper/`**: Contains all files related to our version of Minesweeper.
     - `bomb.png`: Image asset used to represent bombs in the game.
     - `minesweeper.html`: The HTML file for the Minesweeper game, which includes the game's layout and structure.
     - `script.js`: JavaScript file containing the logic and functionality of the Minesweeper game.
@@ -38,56 +38,71 @@ This project aims to develop a web application hosting several JavaScript-based 
 
 
 
-### Prerequisites
+## Setting Up the Project
+
+  ### Prereqs
 
 - Ensure [Git](https://git-scm.com/downloads) is installed on your computer.
 - Have a code editor of your choice installed (e.g., [Visual Studio Code](https://code.visualstudio.com/), [Sublime Text](https://www.sublimetext.com/)).
 
-### Setting Up the Project
-
-1. **Fork the Repository**:
-   - Visit the GitHub page of the project and click on the "Fork" button to create a copy of the repository in your GitHub account.
-
-2. **Clone the Repository**:
-   - Clone your forked repository to your local machine using:
+1. **Clone the Repository**:
+   - Visit the GitHub page of the project.
+   - Clone the repository to your local machine using:
      ```
-     git clone https://github.com/YOUR_USERNAME/JS-Games-Web-App.git
+     git clone https://github.com/DerekGary/JS-Games-Web-App.git
      ```
-   - Replace `YOUR_USERNAME` with your GitHub username.
 
-3. **Navigate to the Project Directory**:
+2. **Navigate to the Project Directory**:
    - Open a terminal and run:
      ```
      cd JS-Games-Web-App
      ```
 
-4. **Set Upstream Remote** (Optional):
-   - To keep your fork synced with the original repository, add it as an upstream remote:
-     ```
-     git remote add upstream https://github.com/DerekGary/JS-Games-Web-App.git
-     ```
-
-
-
-### Making Changes
+## Making Changes
 
 1. **Create a New Branch**:
-   - Before making any changes, ensure you're working on a new branch:
+   - Before making any changes, it's a good practice to create a new branch. This keeps your changes organized and separate from the main branch until they are ready to be merged:
      ```
      git checkout -b branch-name
      ```
-   - Replace `branch-name` with a name relevant to the changes you're making.
+   - Replace `branch-name` with a meaningful name that reflects the changes you're making.
 
 2. **Make and Commit Changes**:
-   - Make your changes in the code editor.
-   - Commit those changes with:
+   - Make your intended changes in the code editor.
+   - Stage your changes for commit:
      ```
-     git commit -am "A descriptive message about your changes"
+     git add .
+     ```
+   - Commit those changes with a descriptive message:
+     ```
+     git commit -m "A descriptive message about your changes"
      ```
 
-3. **Push Changes and Create a Pull Request**:
-   - Push your changes to GitHub:
+3. **Push Changes to GitHub**:
+   - Push your branch and changes to GitHub:
      ```
      git push origin branch-name
      ```
-   - Visit your fork on GitHub and click "New pull request" to open a pull request to the main repository.
+   - This makes your changes available to other project collaborators.
+
+4. **Create a Pull Request**:
+   - Visit the main page of the repository on GitHub.
+   - Click "Compare & pull request" next to your branch.
+   - Review your changes, add a detailed description of what your changes entail, and submit the pull request for review.
+
+## Collaborating
+
+- Ensure to regularly pull the latest changes from the main branch to stay updated:
+  ```
+  git checkout main
+  ```
+  ```
+  git pull origin main
+  ```
+  - When working on a new feature or fix, always start from the latest version of the main branch to minimize merge conflicts.
+
+## Reviewing Changes
+
+- Review pull requests from your teammates, providing feedback or approval as necessary.
+- Once a pull request is approved, it can be merged into the main branch.
+
