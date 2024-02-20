@@ -10,7 +10,7 @@
             this.flagsLeft = document.querySelector('#flags-left');
             this.result = document.querySelector('#result');
             this.width = 10;
-            this.bombAmount = 20;
+            this.bombAmount = 10;
             this.flags = 0;
             this.squares = [];
             this.isGameOver = false;
