@@ -35,6 +35,7 @@
         createBoard: function () {
             // Implement board creation logic here...
             // Bombs and empty squares setup is already provided
+            board = Array(this.width * this.width )
         },
 
 
