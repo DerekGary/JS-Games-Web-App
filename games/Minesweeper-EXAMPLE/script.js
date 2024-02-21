@@ -1,3 +1,5 @@
+// Source: https://github.com/faisalAkhtar/minesweeper
+
 (function () {
     var MineSweeper = {
         // Initialization and core game settings
