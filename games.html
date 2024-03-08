@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Google Fonts for 2P font. This will allow for our Navbar Title to look cool. -->
+    <title>Games</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +14,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </head>
-
 <body>
+    <!-- Reused the navbar from index.html -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">JS-Based Games</a>
@@ -29,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="games.html">Games</a>
+                        <a class="nav-link active" aria-current="page" href="games.html">Games</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -42,21 +39,13 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="container d-flex align-items-center justify-content-center hero-container">
-            <div class="text-center hero-content">
-                <h1>Welcome to JS-Based Games!</h1>
-                <p>Explore our fun and interactive games developed with JavaScript.</p>
-                <a href="games.html" class="btn btn-primary">Check Out Our Games</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="links">
-        <a href="games/Minesweeper/minesweeper.html">Minesweeper</a>
-        <a href="games/Minesweeper-EXAMPLE/minesweeper-example.html">Minesweeper Example</a>
+    <!-- Games List Section -->
+    <div class="container mt-5" id="games-container">
+        <h2>Available Games</h2>
+        <ul class="list-unstyled">
+            <li><a href="games/Minesweeper-EXAMPLE/minesweeper-example.html">Minesweeper</a></li>
+            <!-- Add more games here as they become available -->
+        </ul>
     </div>
 </body>
-
 </html>
