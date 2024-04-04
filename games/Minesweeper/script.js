@@ -93,6 +93,12 @@
         click: function (square) {
             // Implement actions when a square is clicked
             // Includes checking for bomb, revealing square, or checking neighboring squares
+            if(square.classList.contains('bomb')){
+                alert("BOOM game over")
+                this.gameOver();
+            }else{
+                
+            }
         },
 
 
