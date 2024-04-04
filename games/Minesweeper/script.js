@@ -97,7 +97,7 @@
                 alert("BOOM game over")
                 this.gameOver();
             }else{
-                
+                this.checkSquare(square);
                 square.classList.add('checked');
             }
         },
@@ -107,6 +107,7 @@
         checkSquare: function(square) {
             // Implement logic to recursively check neighboring squares
             // Placeholder for recursive check is provided
+
         },
 
 
