@@ -36,6 +36,29 @@
             // Implement board creation logic here...
             // Bombs and empty squares setup is already provided
             board = Array(this.width * this.width )
+
+            for (let i = 0; i < this.width * this.width; i++) {
+                const square = document.createElement('div');
+                square.setAttribute('id', i);
+                square.classList.add(shuffledArray[i]);
+                this.grid.appendChild(square);
+                this.squares.push(square);
+
+                square.addEventListener('click', (e) => {
+                    if (this.flagCursor) {
+                        this.click(square);
+                    } else {
+                        this.addFlag(square);
+                    }
+                });
+
+                // Right click to add flags
+                square.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    this.addFlag(square);
+                };
+            }
+            
         },
 
 
