@@ -4,10 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
+
+
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="msapplication-TileColor" content="#dcd6bc">
+    <meta name="theme-color" content="#dcd6bc">
+
+
+    
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <h1>Our Implementation of Minesweeper</h1>
-    <h3>Work In Progress...</h3>
+
+    <!-- Container to Hold Minesweeper Game -->
+  <div class="container">
+    
+    <!-- Displays Game Result --> 
+    <div class="text" id="result">&nbsp;</div>
+
+    <!-- Displays Grid to Hold Minesweeper Cells -->
+    <div class="grid"></div>
+
+    <!-- Displays Flag Counter -->
+    <div id="flag">&#128681;</div>
+
+    <!-- Displays Help Icon -->
+    <div id="help">?</div>
+
+    <!-- Displays Help Flags Left -->
+    <div class="text">Flags left: <span id='flags-left'></span></div>
+  </div>
+
     <script src="script.js"></script>
 </body>
 </html>
