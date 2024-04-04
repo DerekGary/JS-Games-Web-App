@@ -98,6 +98,7 @@
                 this.gameOver();
             }else{
                 
+                square.classList.add('checked');
             }
         },
 
