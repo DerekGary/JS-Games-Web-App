@@ -34,8 +34,38 @@
         // Board creation with bombs and numbers
         createBoard: function () {
             // Implement board creation logic here...
-            // Bombs and empty squares setup is already provided
-            board = Array(this.width * this.width )
+            
+            
+            //base board setup
+            const bombsArray = Array(this.bombAmount).fill('bomb');
+            const emptyArray = Array(this.width * this.width - this.bombAmount).fill('valid');
+            const gameArray = emptyArray.concat(bombsArray);
+            const shuffledArray = gameArray.sort(() => Math.random() - 0.5);
+           
+            //board = Array(this.width * this.width )
+
+            for (let i = 0; i < this.width * this.width; i++) {
+                const square = document.createElement('div');
+                square.setAttribute('id', i);
+                square.classList.add(shuffledArray[i]);
+                this.grid.appendChild(square);
+                this.squares.push(square);
+
+                square.addEventListener('click', (e) => {
+                    if (this.flagCursor) {
+                        this.click(square);
+                    } else {
+                        this.addFlag(square);
+                    }
+                });
+
+                // Right click to add flags
+                square.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    this.addFlag(square);
+                };
+            }
+            
         },
 
 
