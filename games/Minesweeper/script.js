@@ -65,7 +65,7 @@
                     this.addFlag(square);
                 };
             }
-            
+            this.addNumbers();
         },
 
 
@@ -77,8 +77,15 @@
 
         // Function to add numbers to squares
         addNumbers: function () {
-            // Implement logic to calculate and display numbers around bombs here...
-            // Calculation of surrounding bombs is already provided
+            for (let i = 0; i < this.square.length; i++) {
+                let bombnumb = 0;
+                const isLeftEdge = (i % this.width === 0);
+                const isRightEdge = (i % this.width === this.width - 1);
+
+                if(this.square[i].classList.contains("valid")){
+                    if (i == 0 ) this.squares[i].setAttribute('data', i);
+                }
+            }
         },
 
 
@@ -99,6 +106,9 @@
             }else{
                 this.checkSquare(square);
                 square.classList.add('checked');
+                let total = square.getAttribute('data');
+                square.innerHTML = total;
+                return;
             }
         },
 
