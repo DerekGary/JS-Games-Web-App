@@ -95,6 +95,18 @@
                         if(i+10 < this.squares.length){
                             if(this.squares[i+10].classList.contains('bomb')) total++;
                         }
+                        if(i+9 < this.squares.length){
+                            if(this.squares[i+9].classList.contains('bomb')) total++;
+                        }
+                        if(i+11 < this.squares.length){
+                            if(this.squares[i+11].classList.contains('bomb')) total++;
+                        }
+                        if(i-9 > 0){
+                            if(this.squares[i-9].classList.contains('bomb')) total++;
+                        }
+                        if(i-11 > 0){
+                            if(this.squares[i-11].classList.contains('bomb')) total++;
+                        }
                     this.squares[i].setAttribute('data', total);
                 }
             }
