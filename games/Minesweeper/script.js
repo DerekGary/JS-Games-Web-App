@@ -83,19 +83,18 @@
                 const isRightEdge = (i % this.width === this.width - 1);
 
                 if (this.squares[i].classList.contains('valid')) {
-                    //if (i > 0 && !isLeftEdge && this.squares[i - 1].classList.contains('bomb')) total++;
-                    //if (i > 9 && !isRightEdge && this.squares[i + 1 - this.width].classList.contains('bomb')) total++;
-                    //if (i > 10 && this.squares[i - this.width].classList.contains('bomb')) total++;
-                    //if (i > 11 && !isLeftEdge && this.squares[i - 1 - this.width].classList.contains('bomb')) total++;
-                    //if (i < 98 && !isRightEdge && this.squares[i + 1].classList.contains('bomb')) total++;
-                    //if (i < 90 && !isLeftEdge && this.squares[i - 1 + this.width].classList.contains('bomb')) total++;
-                    //if (i < 88 && !isRightEdge && this.squares[i + 1 + this.width].classList.contains('bomb')) total++;
-                    //if (i < 89 && this.squares[i + this.width].classList.contains('bomb')) total++;
-                    if(this.squares[i].classList.contains('bomb')){
-                        if(i-1 != isLeftEdge && i+1 != isRightEdge){
-                            
+                        if(!isLeftEdge ){
+                            if(this.squares[i-1].classList.contains('bomb')) total++;
                         }
-                    }
+                        if(!isRightEdge){
+                            if(this.squares[i+1].classList.contains('bomb')) total++;
+                        }
+                        if(i-10 > 0){
+                            if(this.squares[i-10].classList.contains('bomb')) total++;
+                        }
+                        if(i+10 < this.squares.length){
+                            if(this.squares[i+10].classList.contains('bomb')) total++;
+                        }
                     this.squares[i].setAttribute('data', total);
                 }
             }
