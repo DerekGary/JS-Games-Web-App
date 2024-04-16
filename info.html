@@ -3,27 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper Information</title>
+    <title>Game Information</title>
+    <link rel="stylesheet" href="navbarstyles.css"> <!-- Assuming you're reusing the same CSS file for the navigation bar -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your main CSS file -->
     <style>
+        /* Additional styles specific to this page can go here */
+        .info-section {
+            margin-top: 50px; /* Adjust as needed */
+        }
+        .info-box {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .info-box h2 {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Minesweeper Information</h1>
-    <p>Welcome to Minesweeper! This page provides an overview of the game and instructions on how to play and operate the game.</p>
-    
-    <h2>Overview</h2>
-    <p>Minesweeper is a classic single-player puzzle game. The objective is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them during the game.</p>
-    
-    <h2>How to Play</h2>
-    <ol>
-        <li>Click on a square to reveal what's underneath it.</li>
-        <li>If a number appears, it indicates how many mines are adjacent to that square in any direction.</li>
-        <li>Use the numbers to deduce the location of mines and mark them with flags.</li>
-        <li>The game is won when all squares without mines are uncovered and no mines have been detonated</li>
-        <li>Be careful! If you click on a square containing a mine, you lose the game.</li>
-    </ol>
-    
-    <h2>Credits</h2>
-    <p>Developed by: Nick Bennings, Derek Gary, and Kaleb Ohlmeier.</p>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="index.html" class="logo">Minesweeper</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Game</a></li>
+            <li><a href="info.html">Information</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="info-section">
+        <div class="info-box">
+            <h2>Overview</h2>
+            <p>The Minesweeper game is a classic puzzle game that originated in the 1960s. It was popularized by Microsoft when it was included in the Windows operating system starting from Windows 3.1.</p>
+            <p>The objective of the game is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them. The board is divided into cells, and each cell may contain either a mine or a number indicating the number of mines in adjacent cells.</p>
+            <p>The game is won when all non-mine cells are revealed. However, if a player clicks on a cell containing a mine, the game is lost.</p>
+            <p>Enjoy playing Minesweeper!</p>
+            
+        </div>
+        
+        <div class="info-box">
+            <h2>Instructions</h2>
+            <p>To play Minesweeper, follow these instructions:</p>
+            <ol>
+                <li>Click on a cell to reveal its content.</li>
+                <li>If a cell contains a number, it indicates the number of mines in adjacent cells.</li>
+                <li>If a cell contains a mine, the game is over.</li>
+                <li>To flag a cell suspected to contain a mine, right-click (or long press on mobile).</li>
+                <li>If all non-mine cells are revealed without detonating any mines, you win!</li>
+            </ol>
+            <p>Good luck!</p>
+            <p>- Devleoped By: Nick Bennings, Derek Gary, and Kaleb Ohlmeier</p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
