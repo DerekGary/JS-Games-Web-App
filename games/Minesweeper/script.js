@@ -77,13 +77,21 @@
 
         // Function to add numbers to squares
         addNumbers: function () {
-            for (let i = 0; i < this.square.length; i++) {
-                let bombnumb = 0;
+            for (let i = 0; i < this.squares.length; i++) {
+                let total = 0;
                 const isLeftEdge = (i % this.width === 0);
                 const isRightEdge = (i % this.width === this.width - 1);
 
-                if(this.square[i].classList.contains("valid")){
-                    if (i == 0 ) this.squares[i].setAttribute('data', i);
+                if (this.squares[i].classList.contains('valid')) {
+                    if (i > 0 && !isLeftEdge && this.squares[i - 1].classList.contains('bomb')) total++;
+                    if (i > 9 && !isRightEdge && this.squares[i + 1 - this.width].classList.contains('bomb')) total++;
+                    if (i > 10 && this.squares[i - this.width].classList.contains('bomb')) total++;
+                    if (i > 11 && !isLeftEdge && this.squares[i - 1 - this.width].classList.contains('bomb')) total++;
+                    if (i < 98 && !isRightEdge && this.squares[i + 1].classList.contains('bomb')) total++;
+                    if (i < 90 && !isLeftEdge && this.squares[i - 1 + this.width].classList.contains('bomb')) total++;
+                    if (i < 88 && !isRightEdge && this.squares[i + 1 + this.width].classList.contains('bomb')) total++;
+                    if (i < 89 && this.squares[i + this.width].classList.contains('bomb')) total++;
+                    this.squares[i].setAttribute('data', total);
                 }
             }
         },
@@ -97,6 +105,7 @@
 
 
         // Click on square actions
+        /*
         click: function (square) {
             // Implement actions when a square is clicked
             // Includes checking for bomb, revealing square, or checking neighboring squares
@@ -107,12 +116,34 @@
                 this.checkSquare(square);
                 square.classList.add('checked');
                 let total = square.getAttribute('data');
-                square.innerHTML = total;
+                if(total != 0){
+                    this.checkSquare(square);
+                    square.innerHTML = total;
+                    alert(total);
+                }
                 return;
             }
         },
 
-
+*/
+click: function (square) {
+    if (this.isGameOver) return;
+    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+    if (square.classList.contains('bomb')) {
+        this.gameOver();
+        alert("BOOM game over")
+    } else {
+        let total = square.getAttribute('data');
+        if (total != 0) {
+            square.classList.add('checked');
+            square.innerHTML = total;
+            return;
+        }
+        this.checkSquare(square);
+        square.classList.add('checked');
+    }
+    
+},
         // Check neighboring squares once square is clicked
         checkSquare: function(square) {
             // Implement logic to recursively check neighboring squares
