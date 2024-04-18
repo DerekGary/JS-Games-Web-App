@@ -5,21 +5,29 @@
 body {
     margin: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;  /* Aligns children vertically */
+    align-items: center;     /* Center items horizontally */
     min-height: 100vh;
     background-color: #dcd6bcdd;
 }
 
-.container {
+.navbar {
+    width: 100%;
+    position: relative;    
+    z-index: 1000;     
+}
+
+.minesweeper-container {
     max-width: 500px;
     max-height: 580px;
     width: 100vw;
     height: calc(100vw + 80px);
     align-content: center;
+    margin-top: 50px;
+    aspect-ratio: 1 / 1;
 }
 
-.grid {
+.minesweeper-grid {
     height: calc(100% - 80px);
     width: 100%;
     display: flex;
@@ -29,15 +37,15 @@ body {
     box-shadow: 0 0 10vw #f5f3eb;
 }
 
-.grid div,
-.text {
+.minesweeper-grid div,
+.minesweeper-text {
     text-shadow: 1px 1px #9c998d;
     text-align: center;
     font-size: 25px;
     font-family: monospace;
 }
 
-.text {
+.minesweeper-text {
         height: 30px;
         margin: 5px 0;
 }
@@ -106,19 +114,19 @@ body {
 }
 
 @media (max-device-width: 500px) {
-    .grid div,
-    .text {
+    .minesweeper-grid div,
+    .minesweeper-text {
         font-size: 5vw;
     }
 }
 
 @media (max-device-height: 580px) and (orientation: landscape) {
-    .container {
+    .minesweeper-container {
         width: calc(100vh - 80px);
         height: 100vh;
     }
-    .grid div,
-    .text {
+    .minesweeper-grid div,
+    .minesweeper-text {
         font-size: 5vh;
     }
 }

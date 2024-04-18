@@ -1,7 +1,10 @@
-<!-- Serves as a component for our navbar, this way we can just call on a JS file that pulls the nav into our HTML -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Import the nav-style.css file -->
+<link rel="stylesheet" href="/components/nav-style.css">
+
+<!-- components/nav.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">JS-Based Games</a>
+        <a class="navbar-brand" href="/index.html">JS-Games</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,13 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="/index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="games.html">Games</a>
+                    <a class="nav-link" href="/games.html">Games</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="/about.html">About</a>
                 </li>
             </ul>
         </div>

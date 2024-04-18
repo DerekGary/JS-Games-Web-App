@@ -18,6 +18,7 @@
             this.helps = 3;
             this.flagBtn = document.querySelector("#flag");
             this.flagCursor = true;
+            this.bomb = document.querySelector('.bomb');
 
             // Create the game board
             this.createBoard();
@@ -65,7 +66,7 @@
                     this.addFlag(square);
                 };
             }
-            
+            this.addNumbers();
         },
 
 
@@ -77,25 +78,68 @@
 
         // Function to add numbers to squares
         addNumbers: function () {
-            // Implement logic to calculate and display numbers around bombs here...
-            // Calculation of surrounding bombs is already provided
+            for (let i = 0; i < this.squares.length; i++) {
+                let total = 0;
+                const isLeftEdge = (i % this.width === 0);
+                const isRightEdge = (i % this.width === this.width - 1);
+
+                if (this.squares[i].classList.contains('valid')) {
+                        if(!isLeftEdge ){
+                            if(this.squares[i-1].classList.contains('bomb')) total++;
+                        }
+                        if(!isRightEdge){
+                            if(this.squares[i+1].classList.contains('bomb')) total++;
+                        }
+                        if(i-10 > 0){
+                            if(this.squares[i-10].classList.contains('bomb')) total++;
+                        }
+                        if(i+10 < this.squares.length){
+                            if(this.squares[i+10].classList.contains('bomb')) total++;
+                        }
+                        if(i+9 < this.squares.length){
+                            if(this.squares[i+9].classList.contains('bomb')) total++;
+                        }
+                        if(i+11 < this.squares.length){
+                            if(this.squares[i+11].classList.contains('bomb')) total++;
+                        }
+                        if(i-9 > 0){
+                            if(this.squares[i-9].classList.contains('bomb')) total++;
+                        }
+                        if(i-11 > 0){
+                            if(this.squares[i-11].classList.contains('bomb')) total++;
+                        }
+                    this.squares[i].setAttribute('data', total);
+                }
+            }
         },
 
 
-        // Add flag with right click
+        // Add flag with left click
         addFlag: function (square) {
             // Implement flag addition and removal logic here...
             // Basic logic for adding/removing flags is provided
         },
 
 
-        // Click on square actions
-        click: function (square) {
-            // Implement actions when a square is clicked
-            // Includes checking for bomb, revealing square, or checking neighboring squares
-        },
 
-
+click: function (square) {
+    if (this.isGameOver) return;
+    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+    if (square.classList.contains('bomb')) {
+        this.gameOver();
+        alert("BOOM game over")
+    } else {
+        let total = square.getAttribute('data');
+        if (total != 0) {
+            square.classList.add('checked');
+            square.innerHTML = total;
+            return;
+        }
+        this.checkSquare(square);
+        square.classList.add('checked');
+    }
+    
+},
         // Check neighboring squares once square is clicked
         checkSquare: function(square) {
             // Implement logic to recursively check neighboring squares
