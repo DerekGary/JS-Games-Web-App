@@ -4,7 +4,7 @@
     var MineSweeper = {
         // Initialization and core game settings
         init: function () {
-            this.grid = document.querySelector('.grid');
+            this.grid = document.querySelector('.minesweeper-grid');
             this.flagsLeft = document.querySelector('#flags-left');
             this.result = document.querySelector('#result');
             this.width = 10;
