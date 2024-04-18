@@ -1,0 +1,8 @@
+
+  /* Media query for 'sm' devices and up 
+     Changes the size of the logo to not break the frontend */
+  @media (min-width: 576px) {
+    .navbar-brand {
+      font-size: 18px;  /* Smaller size for screens wider than 576px */
+    }
+  }
