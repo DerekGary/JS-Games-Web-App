@@ -18,7 +18,7 @@
             this.helps = 3;
             this.flagBtn = document.querySelector("#flag");
             this.flagCursor = true;
-            this.bomb = document.querySelector('.bomb');
+            //this.bomb = document.querySelector('.bomb');
 
             // Create the game board
             this.createBoard();
