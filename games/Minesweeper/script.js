@@ -12,6 +12,7 @@
             this.width = 10;
             this.bombAmount = 20;
             this.flags = 0;
+            this.maxflags = 0;
             this.squares = [];
             this.isGameOver = false;
             this.helpBtn = document.querySelector("#help");
