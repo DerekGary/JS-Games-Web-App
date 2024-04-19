@@ -116,8 +116,18 @@
 
         // Add flag with left click
         addFlag: function (square) {
-            // Implement flag addition and removal logic here...
-            // Basic logic for adding/removing flags is provided
+            alert("place flag")
+            if(!square.classList.contains('checked')){
+                if(square.classList.contains('flag')){
+                    square.classList.remove('flag');
+                    square.innerHTML = '';
+                    this.flags--;
+                }else{
+                    square.classList.add('flag');
+                    square.innerHTML = 'F';
+                    this.flags++;
+                }
+            }
         },
 
 
@@ -137,6 +147,7 @@ click: function (square) {
         }
         this.checkSquare(square);
         square.classList.add('checked');
+        
     }
     
 },
@@ -170,8 +181,8 @@ click: function (square) {
 
         // Flag button functionality
         flagFunc: function () {
-            // Toggle flag placement mode
-            // Basic toggle functionality is provided
+            this.flagCursor = !this.flagCursor;
+            this.flagBtn.classList.toggle("pressed");
         }
     };
 
