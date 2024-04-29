@@ -137,8 +137,11 @@
 
 
 click: function (square) {
-    if (this.isGameOver) return;
-    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+    if (this.isGameOver == true) {
+        return;
+    }else{
+
+        if (square.classList.contains('checked') || square.classList.contains('flag')) return;
     if (square.classList.contains('bomb')) {
         this.gameOver();
         alert("BOOM game over")
@@ -153,6 +156,9 @@ click: function (square) {
         square.classList.add('checked');
         
     }
+
+    }
+    
     
 },
         // Check neighboring squares once square is clicked
