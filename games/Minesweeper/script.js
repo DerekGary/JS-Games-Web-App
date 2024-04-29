@@ -120,7 +120,7 @@
 
         // Add flag with left click
         addFlag: function (square) {
-            alert("place flag")
+            
             if(!square.classList.contains('checked')){
                 if(square.classList.contains('flag')){
                     square.classList.remove('flag');
@@ -137,11 +137,8 @@
 
 
 click: function (square) {
-    if (this.isGameOver == true) {
-        return;
-    }else{
-
-        if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+    if (this.isGameOver) return;
+    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
     if (square.classList.contains('bomb')) {
         this.gameOver();
         alert("BOOM game over")
@@ -156,9 +153,6 @@ click: function (square) {
         square.classList.add('checked');
         
     }
-
-    }
-    
     
 },
         // Check neighboring squares once square is clicked
@@ -225,6 +219,7 @@ click: function (square) {
                 }
             }
             if (matches === this.bombAmount) {
+                alert("you WIN");
                 this.result.innerHTML = 'YOU WIN!';
                 this.isGameOver = true;
             }
