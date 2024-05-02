@@ -6,6 +6,8 @@
         init: function () {
 
             // Elements already initialized
+            this.messageDiv = document.querySelector(".pop-up h3");
+            this.popUp = document.querySelector(".pop-up");
             this.grid = document.querySelector('.grid');
             this.flagsLeft = document.querySelector('#flags-left');
             this.result = document.querySelector('#result');
@@ -15,36 +17,32 @@
             this.maxflags = 20;
             this.squares = [];
             this.isGameOver = false;
+            this.remainingHelps = 3;
             this.helpBtn = document.querySelector("#help");
             this.helps = 3;
             this.flagBtn = document.querySelector("#flag");
             this.flagCursor = true;
             this.bomb = document.querySelector('.bomb');
+            this.nonBombAmount = this.width * this.width - this.bombAmount;
 
             // Create the game board
             this.createBoard();
-
-            // Update flags left display
-            this.updateFlagCount();
 
             // Event listeners for help and flag functionality
             this.helpBtn.addEventListener("click", this.helpFunc.bind(this));
             this.flagBtn.addEventListener("click", this.flagFunc.bind(this));
         },
 
-
         // Board creation with bombs and numbers
         createBoard: function () {
-            // Implement board creation logic here...
-            
-            
+
             //base board setup
             const bombsArray = Array(this.bombAmount).fill('bomb');
             const emptyArray = Array(this.width * this.width - this.bombAmount).fill('valid');
             const gameArray = emptyArray.concat(bombsArray);
             const shuffledArray = gameArray.sort(() => Math.random() - 0.5);
-           
-            
+
+
 
             for (let i = 0; i < this.width * this.width; i++) {
                 const square = document.createElement('div');
@@ -70,13 +68,6 @@
             this.addNumbers();
         },
 
-
-        updateFlagCount: function () {
-            // Update the display for flags left
-            // Already implemented - update if additional UI logic is needed
-        },
-
-
         // Function to add numbers to squares
         addNumbers: function () {
             for (let i = 0; i < this.squares.length; i++) {
@@ -85,78 +76,81 @@
                 const isRightEdge = (i % this.width === this.width - 1);
 
                 if (this.squares[i].classList.contains('valid')) {
-                        if(!isLeftEdge ){
-                            if(this.squares[i-1].classList.contains('bomb')) total++;
-                        }
-                        if(!isRightEdge){
-                            if(this.squares[i+1].classList.contains('bomb')) total++;
-                        }
-                        if(i-10 > 0){
-                            if(this.squares[i-10].classList.contains('bomb')) total++;
-                        }
-                        if(i+10 < this.squares.length){
-                            if(this.squares[i+10].classList.contains('bomb')) total++;
-                        }
-                        if(i+9 < this.squares.length){
-                            if(this.squares[i+9].classList.contains('bomb')) total++;
-                        }
-                        if(i+11 < this.squares.length){
-                            if(this.squares[i+11].classList.contains('bomb')) total++;
-                        }
-                        if(i-9 > 0){
-                            if(this.squares[i-9].classList.contains('bomb')) total++;
-                        }
-                        if(i-11 > 0){
-                            if(this.squares[i-11].classList.contains('bomb')) total++;
-                        }
+                    if (!isLeftEdge) {
+                        if (this.squares[i - 1].classList.contains('bomb')) total++;
+                    }
+                    if (!isRightEdge) {
+                        if (this.squares[i + 1].classList.contains('bomb')) total++;
+                    }
+                    if (i - 10 > 0) {
+                        if (this.squares[i - 10].classList.contains('bomb')) total++;
+                    }
+                    if (i + 10 < this.squares.length) {
+                        if (this.squares[i + 10].classList.contains('bomb')) total++;
+                    }
+                    if (i + 9 < this.squares.length) {
+                        if (this.squares[i + 9].classList.contains('bomb')) total++;
+                    }
+                    if (i + 11 < this.squares.length) {
+                        if (this.squares[i + 11].classList.contains('bomb')) total++;
+                    }
+                    if (i - 9 > 0) {
+                        if (this.squares[i - 9].classList.contains('bomb')) total++;
+                    }
+                    if (i - 11 > 0) {
+                        if (this.squares[i - 11].classList.contains('bomb')) total++;
+                    }
                     this.squares[i].setAttribute('data', total);
-                    if(this.squares[i].classList.contains('bomb')){
+                    if (this.squares[i].classList.contains('bomb')) {
 
                     }
                 }
             }
         },
 
-
         // Add flag with left click
         addFlag: function (square) {
-            
-            if(!square.classList.contains('checked')){
-                if(square.classList.contains('flag')){
+            if (!this.isGameOver && !square.classList.contains('checked')) {
+                if (square.classList.contains('flag')) {
                     square.classList.remove('flag');
                     square.innerHTML = '';
                     this.flags--;
-                }else{
+                } else if (this.flags < this.maxflags) {
                     square.classList.add('flag');
                     square.innerHTML = 'F';
                     this.flags++;
                 }
+                // Check for win in case the user has somehow flagged all bombs.
+                this.checkForWin();
             }
         },
 
+        click: function (square) {
+            if (this.isGameOver) return;
+            if (square.classList.contains('checked') || square.classList.contains('flag')) return;
+            if (square.classList.contains('bomb')) {
+                square.style.backgroundImage = "url('bomb.png')";
+                this.gameOver(false);
 
+            } else {
+                let total = square.getAttribute('data');
+                if (total != 0) {
+                    square.classList.add('checked');
+                    square.innerHTML = total;
+                    this.nonBombAmount--;
+                    this.checkForWin();
+                    return;
+                }
+                this.checkSquare(square);
+                square.classList.add('checked');
+                this.nonBombAmount--;
+                this.checkForWin();
+            }
 
-click: function (square) {
-    if (this.isGameOver) return;
-    if (square.classList.contains('checked') || square.classList.contains('flag')) return;
-    if (square.classList.contains('bomb')) {
-        this.gameOver();
-        alert("BOOM game over")
-    } else {
-        let total = square.getAttribute('data');
-        if (total != 0) {
-            square.classList.add('checked');
-            square.innerHTML = total;
-            return;
-        }
-        this.checkSquare(square);
-        square.classList.add('checked');
-        
-    }
-    
-},
+        },
+
         // Check neighboring squares once square is clicked
-        checkSquare: function(square) {
+        checkSquare: function (square) {
             const currentId = parseInt(square.id);
             const isLeftEdge = currentId % this.width === 0;
             const isRightEdge = currentId % this.width === this.width - 1;
@@ -196,17 +190,10 @@ click: function (square) {
             }, 10);
         },
 
-
-        // Game over logic
-        gameOver: function () {
-            // Implement game over logic here...
-            // Basic display of game over message and revealing bombs is provided
-
-            this.gameOver = true;
-
-
+        // Game over logic (GameResult is true for win and false for loss)
+        gameOver: function (gameResult) {
+            this.generateEndGameMessage(gameResult);
         },
-
 
         // Check for win conditions
         checkForWin: function () {
@@ -218,20 +205,46 @@ click: function (square) {
                     matches++;
                 }
             }
-            if (matches === this.bombAmount) {
-                alert("you WIN");
+            if (matches === this.bombAmount || this.nonBombAmount === 0) {
                 this.result.innerHTML = 'YOU WIN!';
-                this.isGameOver = true;
+                this.gameOver(true);
             }
         },
 
+        // Generate Game Win/Loss Message
+        generateEndGameMessage: function (gameResult) {
+            if (gameResult === true) {
+                this.popUp.style.display = "block";
+                this.messageDiv.textContent = "You Win!";
+                this.messageDiv.style.color = "green";
+            }
+            else if (gameResult === false) {
+                this.popUp.style.display = "block";
+                this.messageDiv.textContent = "You Lose!";
+                this.messageDiv.style.color = "red";
+            }
+            else {
+                console.error("Invalid game result\n" +
+                    "Expected true or false for gameResult, received: " + gameResult);
+            }
+        },
 
         // Help button functionality
         helpFunc: function () {
-            // Implement help functionality here...
-            // Placeholder for using a help (hint) is provided
+            if (this.remainingHelps > 0 && !this.isGameOver) {
+                let safeSquares = this.squares.filter(square =>
+                    !square.classList.contains('checked') &&
+                    !square.classList.contains('bomb')
+                );
+                if (safeSquares.length > 0) {
+                    let randomIndex = Math.floor(Math.random() * safeSquares.length);
+                    let safeSquare = safeSquares[randomIndex];
+                    this.click(safeSquare);
+                    this.remainingHelps--;
+                    this.helpBtn.textContent = this.remainingHelps + ' ?';
+                }
+            }
         },
-
 
         // Flag button functionality
         flagFunc: function () {
@@ -239,6 +252,7 @@ click: function (square) {
             this.flagBtn.classList.toggle("pressed");
         }
     };
-
-    MineSweeper.init();
+    document.addEventListener("DOMContentLoaded", function () {
+        MineSweeper.init();
+    });
 })();
