@@ -129,7 +129,9 @@
             if (this.isGameOver) return;
             if (square.classList.contains('checked') || square.classList.contains('flag')) return;
             if (square.classList.contains('bomb')) {
+                square.style.backgroundImage = "url('bomb.png')";
                 this.gameOver(false);
+
             } else {
                 let total = square.getAttribute('data');
                 if (total != 0) {
