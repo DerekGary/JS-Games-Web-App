@@ -17,6 +17,7 @@
             this.maxflags = 20;
             this.squares = [];
             this.isGameOver = false;
+            this.remainingHelps = 3;
             this.helpBtn = document.querySelector("#help");
             this.helps = 3;
             this.flagBtn = document.querySelector("#flag");
@@ -32,11 +33,8 @@
             this.flagBtn.addEventListener("click", this.flagFunc.bind(this));
         },
 
-
         // Board creation with bombs and numbers
         createBoard: function () {
-            // Implement board creation logic here...
-
 
             //base board setup
             const bombsArray = Array(this.bombAmount).fill('bomb');
@@ -110,7 +108,6 @@
             }
         },
 
-
         // Add flag with left click
         addFlag: function (square) {
             if (!this.isGameOver && !square.classList.contains('checked')) {
@@ -127,8 +124,6 @@
                 this.checkForWin();
             }
         },
-
-
 
         click: function (square) {
             if (this.isGameOver) return;
@@ -149,9 +144,9 @@
                 this.nonBombAmount--;
                 this.checkForWin();
             }
-            
+
         },
-        
+
         // Check neighboring squares once square is clicked
         checkSquare: function (square) {
             const currentId = parseInt(square.id);
@@ -193,12 +188,10 @@
             }, 10);
         },
 
-
         // Game over logic (GameResult is true for win and false for loss)
         gameOver: function (gameResult) {
             this.generateEndGameMessage(gameResult);
         },
-
 
         // Check for win conditions
         checkForWin: function () {
@@ -236,9 +229,20 @@
 
         // Help button functionality
         helpFunc: function () {
-            
+            if (this.remainingHelps > 0 && !this.isGameOver) {
+                let safeSquares = this.squares.filter(square =>
+                    !square.classList.contains('checked') &&
+                    !square.classList.contains('bomb')
+                );
+                if (safeSquares.length > 0) {
+                    let randomIndex = Math.floor(Math.random() * safeSquares.length);
+                    let safeSquare = safeSquares[randomIndex];
+                    this.click(safeSquare);
+                    this.remainingHelps--;
+                    this.helpBtn.textContent = this.remainingHelps + ' ?';
+                }
+            }
         },
-
 
         // Flag button functionality
         flagFunc: function () {
