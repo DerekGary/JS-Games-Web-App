@@ -12,6 +12,7 @@
             this.width = 10;
             this.bombAmount = 20;
             this.flags = 0;
+            this.maxflags = 20;
             this.squares = [];
             this.isGameOver = false;
             this.helpBtn = document.querySelector("#help");
@@ -43,7 +44,7 @@
             const gameArray = emptyArray.concat(bombsArray);
             const shuffledArray = gameArray.sort(() => Math.random() - 0.5);
            
-            //board = Array(this.width * this.width )
+            
 
             for (let i = 0; i < this.width * this.width; i++) {
                 const square = document.createElement('div');
@@ -109,6 +110,9 @@
                             if(this.squares[i-11].classList.contains('bomb')) total++;
                         }
                     this.squares[i].setAttribute('data', total);
+                    if(this.squares[i].classList.contains('bomb')){
+
+                    }
                 }
             }
         },
@@ -116,8 +120,18 @@
 
         // Add flag with left click
         addFlag: function (square) {
-            // Implement flag addition and removal logic here...
-            // Basic logic for adding/removing flags is provided
+            
+            if(!square.classList.contains('checked')){
+                if(square.classList.contains('flag')){
+                    square.classList.remove('flag');
+                    square.innerHTML = '';
+                    this.flags--;
+                }else{
+                    square.classList.add('flag');
+                    square.innerHTML = 'F';
+                    this.flags++;
+                }
+            }
         },
 
 
@@ -137,13 +151,49 @@ click: function (square) {
         }
         this.checkSquare(square);
         square.classList.add('checked');
+        
     }
     
 },
         // Check neighboring squares once square is clicked
         checkSquare: function(square) {
-            // Implement logic to recursively check neighboring squares
-            // Placeholder for recursive check is provided
+            const currentId = parseInt(square.id);
+            const isLeftEdge = currentId % this.width === 0;
+            const isRightEdge = currentId % this.width === this.width - 1;
+            setTimeout(() => {
+                if (currentId > 0 && !isLeftEdge) {
+                    const newId = currentId - 1;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId > 9 && !isRightEdge) {
+                    const newId = currentId + 1 - this.width;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId > 10) {
+                    const newId = currentId - this.width;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId > 11 && !isLeftEdge) {
+                    const newId = currentId - 1 - this.width;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId < 98 && !isRightEdge) {
+                    const newId = currentId + 1;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId < 90 && !isLeftEdge) {
+                    const newId = currentId - 1 + this.width;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId < 88 && !isRightEdge) {
+                    const newId = currentId + 1 + this.width;
+                    this.click(document.getElementById(newId));
+                }
+                if (currentId < 89) {
+                    const newId = currentId + this.width;
+                    this.click(document.getElementById(newId));
+                }
+            }, 10);
         },
 
 
@@ -151,6 +201,10 @@ click: function (square) {
         gameOver: function () {
             // Implement game over logic here...
             // Basic display of game over message and revealing bombs is provided
+
+            this.gameOver = true;
+
+
         },
 
 
@@ -158,6 +212,17 @@ click: function (square) {
         checkForWin: function () {
             // Implement logic to check if the player has won
             // Basic win condition check is provided
+            let matches = 0;
+            for (let i = 0; i < this.squares.length; i++) {
+                if (this.squares[i].classList.contains('flag') && this.squares[i].classList.contains('bomb')) {
+                    matches++;
+                }
+            }
+            if (matches === this.bombAmount) {
+                alert("you WIN");
+                this.result.innerHTML = 'YOU WIN!';
+                this.isGameOver = true;
+            }
         },
 
 
@@ -170,8 +235,8 @@ click: function (square) {
 
         // Flag button functionality
         flagFunc: function () {
-            // Toggle flag placement mode
-            // Basic toggle functionality is provided
+            this.flagCursor = !this.flagCursor;
+            this.flagBtn.classList.toggle("pressed");
         }
     };
 
