@@ -17,7 +17,6 @@
             this.maxflags = 20;
             this.squares = [];
             this.isGameOver = false;
-            this.remainingHelps = 3;
             this.helpBtn = document.querySelector("#help");
             this.helps = 3;
             this.flagBtn = document.querySelector("#flag");
@@ -237,8 +236,7 @@
 
         // Help button functionality
         helpFunc: function () {
-            // Implement help functionality here...
-            // Placeholder for using a help (hint) is provided
+            
         },
 
 
