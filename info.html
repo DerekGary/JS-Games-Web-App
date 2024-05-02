@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Information</title>
-    <link rel="stylesheet" href="navbarstyles.css">
-    <!-- Assuming you're reusing the same CSS file for the navigation bar -->
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your main CSS file -->
     <!-- Google Fonts for 2P font. This will allow for our Navbar Title to look cool. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +20,6 @@
         /* Additional styles specific to this page can go here */
         .info-section {
             margin-top: 50px;
-            /* Adjust as needed */
         }
 
         .info-box {
@@ -41,17 +37,16 @@
 </head>
 
 <body>
-
-    <nav class="navbar no-style">
-        <div class="container">
-            <a href="index.html" class="logo">Minesweeper</a>
+    <div class="container">
+        <nav class="navbar no-style">
+            <a href="./index.html" class="logo">Minesweeper</a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="games.html">Game</a></li>
-                <li><a href="info.html">Information</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./games.html">All Games</a></li>
+                <li><a href="./about.html">Information</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div class="container">
         <div class="info-section">
@@ -81,7 +76,8 @@
                 <p>- Devleoped By: Nick Bennings, Derek Gary, and Kaleb Ohlmeier</p>
             </div>
             <div class="d-flex justify-content-center">
-                <a href="/games/Minesweeper/minesweeper.html"><button class="btn bg-success px-5 py-4 border-0 align-items-center">Play</button></a>
+                <a href="./games/Minesweeper/minesweeper.html"><button
+                        class="btn bg-success px-5 py-4 border-0 align-items-center">Play</button></a>
             </div>
         </div>
     </div>

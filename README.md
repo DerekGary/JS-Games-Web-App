@@ -2,6 +2,8 @@
 
 [![View Demo](https://img.shields.io/badge/View-Demo-blue?style=for-the-badge&logo=github)](https://derekgary.github.io/JS-Games-Web-App/)
 
+AWS Demo: [![View AWS Demo](https://img.shields.io/badge/AWS-232F32?style=for-the-badge&logo=AmazonAWS&logoColor=white)](http://100.27.206.9/index.html)
+
 ## Group Member Names
 - Nicholas Bennings
 - Derek Gary
